@@ -1,0 +1,1 @@
+Put your code into a separate file under the modules folder, so that it'll be easier to work on our individual parts. We can import our files into the main project1_group4.py file.
