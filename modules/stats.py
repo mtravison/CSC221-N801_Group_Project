@@ -1,7 +1,7 @@
 import csv
 
 def deaths_by_year():
-    with open('../Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
+    with open('data/Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
         reader = csv.DictReader(csvfile)
         deaths_by_year = {
             2012: 0,
