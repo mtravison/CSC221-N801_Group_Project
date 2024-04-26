@@ -1,4 +1,4 @@
-# Giancarlo Kite will finish this once more gets done, work in progress
+# Will finish this once more gets done, work in progress
 
 import matplotlib.pyplot as plt
 
