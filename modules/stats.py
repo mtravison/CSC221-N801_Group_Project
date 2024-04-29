@@ -74,3 +74,15 @@ def death_age_range(lowest, highest):
                 ages["Age"] += 1
     return ages
         
+def death_by_race(year):
+    with open('data/Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+        races = {
+            White: 0
+            Black: 0
+            Asian: 0
+        }
+        for row in reader:
+            if row['Date'][6:] == year:
+                races[row['Race']] += 1
+    return races
