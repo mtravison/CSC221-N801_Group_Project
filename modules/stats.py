@@ -75,17 +75,16 @@ def death_age_range(lowest, highest):
   return ages
         
 def death_by_race(year):
-    with open('data/Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
-        reader = csv.DictReader(csvfile)
-        races = {
-            White: 0
-            Black: 0
-            Asian: 0
-        }
-        for row in reader:
-            if row['Date'][6:] == year:
-                races[row['Race']] += 1
-    return races
+  with open('data/Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
+    reader = csv.DictReader(csvfile)
+    races = {"White": 0, "Black": 0, "Asian": 0, "Black or African American": 0, "Asian/Indian": 0, "Other": 0}
+    for row in reader:
+      if int(row['Date'][6:]) == year:
+        try:
+          races[row['Race']] += 1
+        except:
+          races["Other"] += 1
+  return races
 
 def male_female_drug_usage(drug):
     with open('data/Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
