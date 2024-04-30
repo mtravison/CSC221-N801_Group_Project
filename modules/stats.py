@@ -22,7 +22,6 @@ def deaths_by_year():
                 deaths_by_year[year] += 1
     return deaths_by_year
 
-# gonna clean this up later
 def drug_distribution_by_year(year):
     with open('data/Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
         drugs = {
@@ -86,3 +85,20 @@ def death_by_race(year):
             if row['Date'][6:] == year:
                 races[row['Race']] += 1
     return races
+
+def male_female_drug_usage(drug):
+    with open('data/Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
+        reader = csv.DictReader(csvfile)
+        drugs = ['Alcohol', 'Heroin','Cocaine','Fentanyl','Oxycodone','Oxymorphone','Ethanol','Hydrocodone','Benzodiazepine','Methadone','Amphet','Tramad','Morphine','Xylazine','Gabapentin']
+        male_female = {
+            "Drug": drug
+            "Male": 0,
+            "Female": 0
+        }
+        for row in reader:
+            if drug.lower() in row['Cause of Death'].lower():
+                if row['Sex'] == 'Male':
+                    male_female["Male"] += 1
+                else:
+                    male_female["Female"] += 1
+    return male_female
