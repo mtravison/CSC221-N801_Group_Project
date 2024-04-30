@@ -63,15 +63,16 @@ def drug_distribution_by_year(year):
     return drugs
 
 def death_age_range(lowest, highest):
-    with open('data/Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
-        reader = csv.DictReader(csvfile)
-        ages = {}
-        for i in range(1,101):
-            ages[i] = 0
-        for row in reader:
-            if int(row['Age']) >= lowest and int(row['Age']) <= highest:
-                ages["Age"] += 1
-    return ages
+  with open('data/Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
+    reader = csv.DictReader(csvfile)
+    ages = {}
+    for i in range(lowest, highest+1):
+      ages[str(i)] = 0
+    for row in reader:
+      if row['Age'].isdigit():
+        if int(row['Age']) >= lowest and int(row['Age']) <= highest:
+          ages[row["Age"]] += 1
+  return ages
         
 def death_by_race(year):
     with open('data/Accidental_Drug_Related_Deaths_2012-2022.csv') as csvfile:
