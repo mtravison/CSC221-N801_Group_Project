@@ -3,7 +3,7 @@
 
 # Import module example
 import matplotlib.pyplot
-# import modules.visualization as visualization
+import modules.visualization as visualization
 import modules.stats as stats
 
 # declare constants
@@ -12,11 +12,9 @@ LATEST_YEAR = 2022
 YEAR_OPTIONS = ( ["1", "2"], ["Single Year", "Range of Years"] )
 
 # Uses the function stats.py inside the modules folder
-deaths_by_year = stats.deaths_by_year()
-drug_distribution_by_year = stats.drug_distribution_by_year(2014)
 
-print(deaths_by_year[2020])
-print(drug_distribution_by_year)
+visualization.yearly_comparisons([2012, 2013, 2014], 'line', stats.deaths_by_year)
+
 
 # ================================  call functions in looped sequence
 def main():

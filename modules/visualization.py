@@ -1,12 +1,12 @@
 # Rough draft
 
 import matplotlib.pyplot as plt
-import stats
+
 
 # Takes in list of years and chart type as input (bar or line)
 # Displays the comparison of death amount for years given
-def yearly_comparisons(years, chart_type):
-    deaths_data = {year: stats.deaths_by_year()[year] for year in years if year in stats.deaths_by_year()}
+def yearly_comparisons(years, chart_type, deaths_by_year):
+    deaths_data = {year: deaths_by_year()[year] for year in years if year in deaths_by_year()}
 
     x = list(deaths_data.keys())
     y = list(deaths_data.values())
@@ -37,10 +37,10 @@ def yearly_comparisons(years, chart_type):
 
 # Takes in list of years and chart type as input (bar or line)
 # Displays the amount of deaths per race for the years given
-def race_deaths_comparison(years, chart_type):
+def race_deaths_comparison(years, chart_type, death_by_race):
     race_labels = ['White', 'Black', 'Asian', 'Black or African American', 'Asian/Indian', 'Other']
     colors = ['blue', 'orange', 'green', 'red', 'purple', 'gray']
-    race_deaths = {year: stats.death_by_race(year) for year in years}
+    race_deaths = {year: death_by_race(year) for year in years}
     data = {race: [race_deaths[year][race] for year in years] for race in race_labels}
 
     if chart_type == 'bar':
@@ -74,8 +74,8 @@ def race_deaths_comparison(years, chart_type):
 
 # Takes in lowest age, highest age and chart type as input (bar or line)
 # Displays the death amount for each age given in the range
-def death_age_range(lowest, highest, chart_type):
-    age_data = stats.death_age_range(lowest, highest)
+def death_age_range(lowest, highest, chart_type, death_age_range):
+    age_data = death_age_range(lowest, highest)
     ages = list(age_data.keys())
     deaths = list(age_data.values())
 
@@ -106,8 +106,8 @@ def death_age_range(lowest, highest, chart_type):
 
 # Takes in drug and chart type as input (bar or pie)
 # Displays the distribution of deaths by gender for the specified drug type
-def drug_gender_distribution(drug, chart_type):
-    data = stats.male_female_drug_usage(drug)    
+def drug_gender_distribution(drug, chart_type, male_female_drug_usage):
+    data = male_female_drug_usage(drug)    
     genders = list(data.keys())[1:]
     deaths = [data[gender] for gender in genders]
 
@@ -135,8 +135,8 @@ def drug_gender_distribution(drug, chart_type):
 
 # Takes in year and chart type as input (bar or pie)
 # Displays the distribution of drug amount for the year given
-def drug_distribution_by_year(year, chart_type):
-    drug_data = stats.drug_distribution_by_year(year)
+def drug_distribution_by_year(year, chart_type, drug_distribution_by_year):
+    drug_data = drug_distribution_by_year(year)
     
     drugs = list(drug_data.keys())[:-1]  
     percentages = [drug_data[drug][1] for drug in drugs]
