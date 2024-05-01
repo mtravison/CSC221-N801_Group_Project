@@ -1,0 +1,62 @@
+# Group [xx]; Group Project 1; Due 5/2/2024; Group Members: Matt Travison, Benjamin Ferrel, Giancarlo Kite, Clerick Barrion, Alyssa Vang
+
+import csv
+
+# inport the data file
+
+with open(r'C:\Users\travi\OneDrive\Documents\School Work\CSC221-N801 - Advanced Python\Accidental_Drug_Related_Deaths_2012-2022.csv','rt') as csvfile:
+    dataElements = list(csv.reader(csvfile))
+    csvfile.close()
+
+# set up lists to save off the data
+
+days = []
+months = []
+years = []
+states = []
+ages = []
+races = []
+genders = []
+
+def parseLines(listSource): ## take in the data lines and parse them to the right lists
+    for i in range(1, len(listSource)):
+        months.append(splitADate(listSource[i][0])[0])
+        days.append(splitADate(listSource[i][0])[1])
+        years.append(splitADate(listSource[i][0])[2])
+        states.append(addDefaultState(listSource[i][8]))
+        ages.append(listSource[i][2])
+        races.append(listSource[i][4])
+        genders.append(listSource[i][3])
+
+
+def splitADate(date): ## break the date apart into 3 different fields
+    result = None
+
+    firstSlash = date.find("/")
+    secondSlash = date.find("/", firstSlash + 1)
+    
+    month = date[0:firstSlash]
+    day = date[firstSlash+1:secondSlash]
+    year = date[secondSlash+1:]
+
+    return month, day, year
+
+def addDefaultState(state): ## replace the blank states with a defaul "NA" option
+    result = None
+    if state == "":
+        result = "NA"
+    else:
+        result = state
+    
+    return result
+
+parseLines(dataElements) ## parse the data 
+
+## testing outputs
+
+## print(days)
+## print(months)
+## print(years)
+## print(states)
+## print(races)
+## print(genders)
